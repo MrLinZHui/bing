@@ -1,0 +1,71 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>bing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="ext-base.js"></script>
+    <script type="text/javascript" src="ext-all.js"></script>
+    <link type="text/css" rel="stylesheet" href="ext-all.css">
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            Ext.ns('com.ita');
+            com.ita.Field = Ext.extend(Ext.form.Field,{
+                style: 'font-size: 15px;border: none;border-style: none;text-shadow: none',
+                width: 413,
+                height: 30,
+                initComponent: function () {
+                    com.ita.Field.superclass.initComponent.call(this);
+                }
+            });
+            Ext.reg('com.ita.Field', com.ita.Field);
+            com.ita.Button = Ext.extend(Ext.Button,{
+                width: 35,
+                height: 32,
+                style: 'float:right',
+                icon: 'image/search1.png',
+                initComponent: function () {
+                    com.ita.Button.superclass.initComponent.call(this);
+                }
+            });
+            Ext.reg('com.ita.Button', com.ita.Button);
+            var container = new Ext.Container({
+                layout: 'table',
+                renderTo: document.body,
+                style: 'margin: 100px 21px 0 200px',
+                items: [{
+                    xtype: 'box',
+                    height: 57,
+                    width: 142,
+                    autoEl: {
+                        tag: 'img',
+                        src: 'image/hpc26.png'
+                    }
+                }, {
+                    xtype: 'tabpanel',
+                    // height: 57,
+                    width: 450,
+                    plain: true,
+                    activeTab: 0,
+                    items: [{
+                        title: '国内版',
+                        items: [{ xtype: 'com.ita.Field'}, { xtype: 'com.ita.Button'}]
+                    }, {
+                        title: '国外版',
+                        items: [{ xtype: 'com.ita.Field'}, { xtype: 'com.ita.Button'}]
+                    }]
+                }]
+            })
+        })
+    </script>
+    <style type="text/css">
+        body {
+            background-image: url(image/th.jpg)
+        }
+    </style>
+</head>
+
+<body></body>
+
+</html>
