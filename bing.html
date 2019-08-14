@@ -11,17 +11,29 @@
     <script type="text/javascript">
         Ext.onReady(function () {
             Ext.ns('com.ita');
-            com.ita.Field = Ext.extend(Ext.form.Field,{
+            com.ita.Field = Ext.extend(Ext.form.Field, {
                 style: 'font-size: 15px;border: none;border-style: none;text-shadow: none',
                 width: 413,
                 height: 30,
                 initComponent: function () {
                     com.ita.Field.superclass.initComponent.call(this);
+                    this.on('focus', this.onFieldClick, this);
+                    this.on('blur', this.FieldBlur, this);
+                },
+                onFieldClick: function (oEvent) {
+                    var hideobj = document.getElementById("hidebg");
+                    hidebg.style.display = "block";  
+                    hidebg.style.height = 969+'px';  
+                    Ext.getCmp("container").show();  
+                    Ext.getCmp("img").show();  
+                },
+                FieldBlur: function(oEvent){
+                    document.getElementById("hidebg").style.display = "none";
                 }
             });
             Ext.reg('com.ita.Field', com.ita.Field);
-            com.ita.Button = Ext.extend(Ext.Button,{
-                width: 35,
+            com.ita.Button = Ext.extend(Ext.Button, {
+                width: 37,
                 height: 32,
                 style: 'float:right',
                 icon: 'image/search1.png',
@@ -33,11 +45,13 @@
             var container = new Ext.Container({
                 layout: 'table',
                 renderTo: document.body,
+                id: 'container',
                 style: 'margin: 100px 21px 0 200px',
                 items: [{
                     xtype: 'box',
                     height: 57,
                     width: 142,
+                    id: 'img',
                     autoEl: {
                         tag: 'img',
                         src: 'image/hpc26.png'
@@ -50,10 +64,10 @@
                     activeTab: 0,
                     items: [{
                         title: '国内版',
-                        items: [{ xtype: 'com.ita.Field'}, { xtype: 'com.ita.Button'}]
+                        items: [{ xtype: 'com.ita.Field' }, { xtype: 'com.ita.Button' }]
                     }, {
                         title: '国外版',
-                        items: [{ xtype: 'com.ita.Field'}, { xtype: 'com.ita.Button'}]
+                        items: [{ xtype: 'com.ita.Field' }, { xtype: 'com.ita.Button' }]
                     }]
                 }]
             })
@@ -63,9 +77,22 @@
         body {
             background-image: url(image/th.jpg)
         }
+
+        #hidebg {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background-color: #000;
+            width: 100%;
+            /* filter: alpha(opacity=60); */
+            opacity: 0.6;
+            display: none;
+        }
     </style>
 </head>
 
-<body></body>
+<body>
+    <div id="hidebg"></div>
+</body>
 
 </html>
