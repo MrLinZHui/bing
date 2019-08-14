@@ -15,6 +15,7 @@
                 style: 'font-size: 15px;border: none;border-style: none;text-shadow: none',
                 width: 413,
                 height: 30,
+                id: 'field',
                 initComponent: function () {
                     com.ita.Field.superclass.initComponent.call(this);
                     this.on('focus', this.onFieldClick, this);
@@ -33,12 +34,17 @@
             });
             Ext.reg('com.ita.Field', com.ita.Field);
             com.ita.Button = Ext.extend(Ext.Button, {
-                width: 37,
+                width: 35,
                 height: 32,
                 style: 'float:right',
                 icon: 'image/search1.png',
                 initComponent: function () {
                     com.ita.Button.superclass.initComponent.call(this);
+                    this.on('click',this.onButtonClick, this);
+                },
+                onButtonClick: function(oEvent){
+                    var value = Ext.get('field').dom.value;
+                    window.location.href="https://cn.bing.com/search?q="+value;
                 }
             });
             Ext.reg('com.ita.Button', com.ita.Button);
@@ -84,7 +90,7 @@
             top: 0px;
             background-color: #000;
             width: 100%;
-            /* filter: alpha(opacity=60); */
+            filter: alpha(opacity=60);
             opacity: 0.6;
             display: none;
         }
